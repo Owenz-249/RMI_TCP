@@ -2,7 +2,14 @@ package control;
 
 import model.Student;
 
-public class RMIClientImp implements RMIClient{
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class RMIClientImp extends UnicastRemoteObject implements RMIClient{
+    protected RMIClientImp() throws RemoteException {
+    }
+    private static final long serialVersionUID = 1L;
+
     @Override
     public Student getStudent() {
         Student student = new Student("B20DCDT008", "Ha Viet Anh", "192.168.1.7", 5, "Owen", 1099);
