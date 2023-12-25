@@ -5,14 +5,16 @@ import model.Student;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RMIClientImp extends UnicastRemoteObject implements RMIClient{
-    protected RMIClientImp() throws RemoteException {
-    }
+public class IRemoteClientImp extends UnicastRemoteObject implements IRemoteClient {
+
     private static final long serialVersionUID = 1L;
+
+    protected IRemoteClientImp() throws RemoteException {
+    }
 
     @Override
     public Student getStudent() {
-        Student student = new Student("B20DCDT008", "Ha Viet Anh", "192.168.1.7", 5, "Owen", 1099);
+        Student student = new Student("B20DCDT008", "Ha Viet Anh", "192.168.1.7", 5);
         return student;
     }
 
@@ -24,19 +26,17 @@ public class RMIClientImp extends UnicastRemoteObject implements RMIClient{
 
     @Override
     public int getUSCLN(int a, int b) {
-        while(a != 0) {
-            int tmp = a % b;
-            a = tmp;
-            b = a;
-        }
-        return a;
+      while(b != 0) {
+          int tmp = a%b;
+          a = b;
+          b = tmp;
+      }
+      return a;
     }
 
     @Override
     public int getBSCNN(int a, int b) {
-        long c = a * b;
-        int ans = (int) (c / getUSCLN(a, b));
-        return ans;
+       return (a * b) / getUSCLN(a, b);
     }
 
     @Override
@@ -49,10 +49,10 @@ public class RMIClientImp extends UnicastRemoteObject implements RMIClient{
 
     @Override
     public String getNormalization(String str) {
-        String []tmp = str.trim().split("\\s+");
+        String[] st = str.trim().split("\\s+");
         StringBuilder res = new StringBuilder();
-        for(String st : tmp) {
-            res.append(st.substring(0, 1).toUpperCase()).append(st.substring(1).toLowerCase());
+        for(String s : st) {
+            res.append(s.substring(0, 1).toUpperCase()).append(s.substring(1).toLowerCase()).append(" ");
         }
         return res.toString().trim();
     }

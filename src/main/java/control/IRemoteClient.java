@@ -5,7 +5,7 @@ import model.Student;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface RMIClient extends Remote {
+public interface IRemoteClient extends Remote {
     public Student getStudent() throws RemoteException;
     public int getMax(int a, int b) throws RemoteException;
     public int getUSCLN(int a, int b) throws RemoteException;
